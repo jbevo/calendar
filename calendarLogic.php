@@ -3,7 +3,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Controlla se il campo data e ora è stato inviato
     if (isset($_POST["data_ora"])) {
         $data_ora = $_POST["data_ora"];
-        echo $data_ora;
+        //echo $data_ora;
         // Puoi fare altre operazioni con la data e l'ora qui
     } else {
         $data_ora = 0;
@@ -12,11 +12,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //echo $cognome;
 
     $fd = fopen("./data/apointments.csv", "a+");
-    $appuntamento = $cognome . "appuntamento:" . $data_ora;
+    $appuntamento = $cognome . ": " . $data_ora . "\n";
     fputs($fd, "$appuntamento");
     fclose($fd);
 }
-?>
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -95,7 +94,6 @@ for ($row = 1; $row <= 6; $row++) {
             $dayCounter++;
         }
     }
-
     echo '</tr>';
 }
 

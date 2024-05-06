@@ -15,7 +15,7 @@ form {
     background-color: #fff;
     padding: 20px;
     border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 input[type="text"],
@@ -55,3 +55,29 @@ input[type="submit"]:hover {
 .highlight {
     background-color: red; /* Cambia il colore di sfondo in quello che preferisci */
 }
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+    font-family: Arial, sans-serif;
+}
+
+/* Stile dell'intestazione della tabella */
+th {
+    background-color: lightgray;
+    border: 1px solid black;
+    padding: 8px;
+    text-align: left;
+}
+
+/* Stile delle celle della tabella */
+td {
+    border: 1px solid black;
+    padding: 8px;
+}
+
+/* Stile delle righe pari della tabella */
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
