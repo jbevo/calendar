@@ -15,6 +15,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $appuntamento = $cognome . "," . $data_ora . "\n";
     fputs($fd, "$appuntamento");
     fclose($fd);
+
+    // Imposta la zona oraria
+    date_default_timezone_set('Europe/Rome');
+
+    // Ottieni la data da colorare dalla richiesta POST
+    $dateToColor = isset($_POST["data_ora"]) ? $_POST["data_ora"] : 0;
+
+    //lettura date inserite in precedenza
+    $file_path = 'data/apointments.csv';
+
+    function confrontaGiorni($days1, $days2){
+        if($days1 == date("d", strtotime($days2))){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }
 ?>
 <!DOCTYPE html>
@@ -29,17 +47,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </style>
 <body>
 <?php
-// Imposta la zona oraria
-date_default_timezone_set('Europe/Rome');
-
-// Ottieni la data da colorare dalla richiesta POST
-$dateToColor = isset($_POST["data_ora"]) ? $_POST["data_ora"] : null;
-
-//lettura date inserite in precedenza
-$file_path = 'data/apointments.csv';
 
 // Se la data da colorare è fornita e nel formato corretto, convertila in un oggetto DateTime
 $dateToColorObject = null;
+
 if ($dateToColor) {
     $dateToColorObject = DateTime::createFromFormat('Y-m-d', $dateToColor);
 }
@@ -68,6 +79,7 @@ for ($row = 1; $row <= 6; $row++) {
 
     // Loop per stampare le colonne del calendario
     for ($col = 1; $col <= 7; $col++) {
+
         // Se il giorno corrente è maggiore del numero di giorni nel mese, esci dal loop
         if ($dayCounter > $daysInMonth) {
             break;
@@ -83,6 +95,7 @@ for ($row = 1; $row <= 6; $row++) {
                 $currentDateFormat = new DateTime($currentDate);
                 $dateToColorFormat = new DateTime($dateToColor);
             } catch (Exception $e) {
+
             }
             $cellClass = '';
 
@@ -97,7 +110,7 @@ for ($row = 1; $row <= 6; $row++) {
 
                     //echo($data_temp[0]);
 
-                    if(($dayCounter == date("d", strtotime($data_temp)))){
+                    if(confrontaGiorni($dayCounter, $data_temp)){
                         $cellClass = 'highlight';
                         //echo "dentro\n";
                     }
@@ -105,7 +118,7 @@ for ($row = 1; $row <= 6; $row++) {
             }
 
             //lettura data appena inserita
-            if ($dayCounter == date("d", strtotime($dateToColor))) {
+            if (confrontaGiorni($dayCounter, $dateToColor)) {
                 $cellClass = 'highlightJustDid';
                 //echo ("in");
             }
