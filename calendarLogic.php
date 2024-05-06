@@ -9,8 +9,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $data_ora = 0;
     }
     $cognome = $_POST['cognome'];
-    echo $cognome;
+    //echo $cognome;
+
+    $fd = fopen("./data/apointments.csv", "a+");
+    $appuntamento = $cognome . "appuntamento:" . $data_ora;
+    fputs($fd, "$appuntamento");
+    fclose($fd);
 }
+?>
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,7 +53,7 @@ $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $currentMonth, $currentYear);
 $firstDayOfMonth = date('N', strtotime("$currentYear-$currentMonth-01"));
 
 // HTML per iniziare il calendario
-echo '<table border="1">';
+echo '<table>';
 echo '<tr><th colspan="7">' . date('F Y') . '</th></tr>';
 echo '<tr><th>Lun</th><th>Mar</th><th>Mer</th><th>Gio</th><th>Ven</th><th>Sab</th><th>Dom</th></tr>';
 
@@ -71,8 +77,11 @@ for ($row = 1; $row <= 6; $row++) {
         } else {
             // Altrimenti, verifica se la data corrente corrisponde alla data da colorare
             $currentDate = $currentYear.'-'.$currentMonth.'-'.$dayCounter;
-            $currentDateFormat = new DateTime($currentDate);
-            $dateToColorFormat = new DateTime($dateToColor);
+            try {
+                $currentDateFormat = new DateTime($currentDate);
+                $dateToColorFormat = new DateTime($dateToColor);
+            } catch (Exception $e) {
+            }
             $cellClass = '';
 
             if ($dayCounter == date("d", strtotime($dateToColor))) {

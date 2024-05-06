@@ -7,8 +7,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //usate quando si passano i parametr
     $genere = $_POST['genere'];
 }
 
-$fd=fopen("userData.csv","a+");
-$utente = $cognome ."," .$nome ."," .$nazione ."," .$dataNascita ."," .$genere. "\n";
+$fd=fopen("data/userData.csv","a+");
+$utente = "";
+if(isset($cognome) && isset($nome) && isset($nazione) && isset($dataNascita) && isset($genere)){
+    $utente = $cognome ."," .$nome ."," .$nazione ."," .$dataNascita ."," .$genere. "\n";
+}else{
+    $utente = "jone, doe, america, 1/1/1111, m";
+}
 fputs($fd, "$utente");
 fclose($fd);
 ?>
@@ -31,7 +36,7 @@ echo
     <p>salve " .$cognome ." " .$nome ."<br>". "richieda data e ora per l'appuntamento</p>
     <label for='data_ora'>Data e ora:</label>
     <input type='datetime-local' id='data_ora' name='data_ora' required>
-    <input class='hidename' type='string' id='cognome' name='cognome' value='$cognome'>
+    <input class='hidename' type='text' id='cognome' name='cognome' value='$cognome'>
     <br>
     <input type='submit' value='Invia'>
 </form><br>";
