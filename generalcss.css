@@ -52,8 +52,12 @@ input[type="submit"]:hover {
     color: green;
 }
 
-.highlight {
+.highlightJustDid {
     background-color: red; /* Cambia il colore di sfondo in quello che preferisci */
+}
+
+.highlight {
+    background-color: green; /* Cambia il colore di sfondo in quello che preferisci */
 }
 
 table {

@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //echo $cognome;
 
     $fd = fopen("./data/apointments.csv", "a+");
-    $appuntamento = $cognome . ": " . $data_ora . "\n";
+    $appuntamento = $cognome . "," . $data_ora . "\n";
     fputs($fd, "$appuntamento");
     fclose($fd);
 }
@@ -34,6 +34,9 @@ date_default_timezone_set('Europe/Rome');
 
 // Ottieni la data da colorare dalla richiesta POST
 $dateToColor = isset($_POST["data_ora"]) ? $_POST["data_ora"] : null;
+
+//lettura date inserite in precedenza
+$file_path = 'data/apointments.csv';
 
 // Se la data da colorare è fornita e nel formato corretto, convertila in un oggetto DateTime
 $dateToColorObject = null;
@@ -83,19 +86,39 @@ for ($row = 1; $row <= 6; $row++) {
             }
             $cellClass = '';
 
-            if ($dayCounter == date("d", strtotime($dateToColor))) {
-                $cellClass = 'highlight';
-                //echo ("in");
+            $handle = fopen($file_path, 'r');
+            if ($handle) {
+                // Leggi il file riga per riga
+                while (($dati = fgetcsv($handle)) !== false) {
+                    // Accedi al secondo dato (indice 1) di ogni riga
+                    $secondo_dato = $dati[1];
+                    $data_splited = explode("T", $secondo_dato, 5);
+                    $data_temp = $data_splited[0];
+
+                    //echo($data_temp[0]);
+
+                    if(($dayCounter == date("d", strtotime($data_temp)))){
+                        $cellClass = 'highlight';
+                        //echo "dentro\n";
+                    }
+                }
             }
 
+            //lettura data appena inserita
+            if ($dayCounter == date("d", strtotime($dateToColor))) {
+                $cellClass = 'highlightJustDid';
+                //echo ("in");
+            }
 
             // Stampare la cella con la classe CSS appropriata
             echo '<td class="' . $cellClass . '">' . $dayCounter . '</td>';
             $dayCounter++;
+            fclose($handle);
         }
     }
     echo '</tr>';
 }
+
 
 // Chiudi la tabella
 echo '</table>';
