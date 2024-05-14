@@ -40,14 +40,16 @@ fclose($fd);
 </style>
 <body>
 <?php
-echo 
-"<form action='calendarLogic.php' class='centerdbody' method='POST'>
-    <p>salve " .$cognome ." " .$nome ."<br>". "richieda data e ora per l'appuntamento</p>
-    <label for='data_ora'>Data e ora:</label>
-    <input type='datetime-local' id='data_ora' name='data_ora' required>
-    <br>
-    <input type='submit' value='Invia'>
-</form><br>";
+if (isset($cognome) && isset($nome)) {
+    echo
+    "<form action='calendarLogic.php' class='centerdbody' method='POST'>
+        <p>salve " .$cognome ." " .$nome ."<br>". "richieda data e ora per l'appuntamento</p>
+        <label for='data_ora'>Data e ora:</label>
+        <input type='datetime-local' id='data_ora' name='data_ora' required>
+        <br>
+        <input type='submit' value='Invia'>
+    </form><br>";
+}
 ?>
 </body>
 </html>
