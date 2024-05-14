@@ -10,20 +10,20 @@
     <?php include 'generalcss.css'; ?>
 </style>
 <body>
-    <form action="dataSaveLogic.php" method="POST">
-        Nome: <input type="text" name="nome" id="nome "placeholder="inserisci il tuo nome" size="20"><br>
+    <form class="centerdbody" action="Logics/dataSaveLogic.php" method="POST">
+        <label for="nome ">Nome: </label><input type="text" name="nome" id="nome " placeholder="inserisci il tuo nome" size="20"><br>
 
-        Cognome: <input type="text" name="cognome" id="cognome" placeholder="inserisci il tuo cognome" size="20"><br>
+        <label for="cognome">Cognome: </label><input type="text" name="cognome" id="cognome" placeholder="inserisci il tuo cognome" size="20"><br>
 
-        Nazione: <select size="1" name="nazione" id="nazione"> 
+        <label for="nazione">Nazione: </label><select size="1" name="nazione" id="nazione">
             <option value="ch">Svizzera</option>
             <option value="it">Italia</option>
             <option value="fr">Francia</option>
         </select><br>
 
-        Data di nascita: <input type="date" id="dataNascita" name="dataNascita" required><br>
-        
-        Genere: <input type="radio" name="genere" id="genere" value="F">F
+        <label for="dataNascita">Data di nascita: </label><input type="date" id="dataNascita" name="dataNascita" required><br>
+
+        <label for="genere">Genere: </label><input type="radio" name="genere" id="genere" value="F">F
         <input type="radio" name="genere" value="M" checked>M<br>
 
         <input type="submit" value="invia">

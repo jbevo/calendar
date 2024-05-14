@@ -9,8 +9,8 @@ body {
     padding: 0;
 }
 
-form {
-    width: 80%;
+.centerdbody{
+    width: 90%;
     margin: 50px auto;
     background-color: #fff;
     padding: 20px;
@@ -62,7 +62,6 @@ input[type="submit"]:hover {
 
 table {
     border-collapse: collapse;
-    width: 100%;
     font-family: Arial, sans-serif;
 }
 
@@ -80,8 +79,28 @@ td {
     padding: 8px;
 }
 
-/* Stile delle righe pari della tabella */
-tr:nth-child(even) {
-    background-color: #f2f2f2;
+
+/*bottone in fonod al calendario per tornare alla pagina iniziale*/
+.button-link {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #4caf50;
+    text-align: center;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
 }
 
+
+/*sile per i giorni dentro il calendario che reindirizzano sullo stesso giorno*/
+.normalA {
+    color: inherit; /* Mantiene il colore del testo circostante */
+    text-decoration: none; /* Rimuove la sottolineatura */
+}
+.normalA:hover {
+    color: #007BFF; /* Colore a scelta quando si passa il mouse */
+    text-decoration: underline; /* Sottolinea il link al passaggio del mouse */
+}
