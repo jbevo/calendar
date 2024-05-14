@@ -23,9 +23,13 @@
 
         <label for="dataNascita">Data di nascita: </label><input type="date" id="dataNascita" name="dataNascita" required><br>
 
-        <label for="genere">Genere: </label>
-        <input type="radio" name="genere" id="genere" value="F">F
-        <input type="radio" name="genere" value="M" checked>M<br>
+        Genere:<br>
+        <label>
+            <input type="radio" name="genere" value="f">
+        </label>F<br>
+        <label>
+            <input type="radio" name="genere" value="M" checked>
+        </label>M<br>
 
         <input type="submit" value="invia">
     </form>
