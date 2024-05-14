@@ -138,13 +138,17 @@ for ($row = 1; $row <= 6; $row++) {
 
 // Chiudi la tabella
 echo '</table>';
+
+echo '</div>';
+
+echo '</body>';
 ?>
 
 <a href="../index.php" class="button-link">torna alla home</a>
 
-</div>
 
 
 
-</body>
+
+
 </html>
