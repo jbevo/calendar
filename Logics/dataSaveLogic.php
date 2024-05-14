@@ -9,8 +9,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //usate quando si passano i parametr
     $genere = $_POST['genere'];
 }
 
-$_SESSION['cognome'] = $cognome;
-$_SESSION['nome'] = $nome;
+if (!empty($cognome)) {
+    $_SESSION['cognome'] = $cognome;
+}
+if (!empty($nome)) {
+    $_SESSION['nome'] = $nome;
+}
 
 $fd=fopen("../data/userData.csv","a+");
 $utente = "";
