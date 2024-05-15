@@ -11,15 +11,7 @@
 <body>
 <div class="centerdbody">
     <?php
-
-    function confrontaGiorni($days1, $days2){
-        if(date("d", strtotime($days1)) == date("d", strtotime($days2))){
-            return true;
-        }else{
-            return false;
-        }
-    }
-        echo "<table> <tr><th>nome</th><th>cognome</th><th>nazione</th><th>data di nascita</th><th>sesso</th></tr>";
+        echo "<table> <tr><th>Nome</th><th>Cognome</th><th>Nazione</th><th>Data di nascita</th><th>Sesso</th></tr>";
         //lettura degli appuntamenti
         $handle = fopen("../data/userData.csv", "r");
         if ($handle) {
