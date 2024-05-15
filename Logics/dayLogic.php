@@ -24,7 +24,7 @@
         $data = $_GET['data'];
         //echo $data . "<br>";
         //creazione prima parte della tabella
-        echo "<table> <tr><td>persona</td><td>ora</td></tr>";
+        echo "<table> <tr><th>persona</th><th>ora</th></tr>";
         //lettura degli appuntamenti
         $handle = fopen("../data/apointments.csv", "r");
         $controllo = true;
