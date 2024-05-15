@@ -27,7 +27,6 @@
         echo "<table> <tr><th>persona</th><th>ora</th></tr>";
         //lettura degli appuntamenti
         $handle = fopen("../data/apointments.csv", "r");
-        $controllo = true;
         if ($handle) {
             // Leggi il file riga per riga
             while (($dati = fgetcsv($handle)) !== false) {
@@ -39,7 +38,6 @@
                 if(confrontaGiorni($data, $giorno)){
                     //vado a creare una riga della colonna con dentro la persona e poi l'ora del appuntamento
                     echo "<tr><td>" .$dati[0] . "</td><td> ". $ora . "</td></tr>";
-                    $controllo = false;
                 }
             }
         }
