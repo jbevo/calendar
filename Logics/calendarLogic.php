@@ -1,6 +1,10 @@
 <?php
 
 session_start();
+
+//lettura date inserite in precedenza
+$apointments_path = '../data/apointments.csv';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Controlla se il campo data e ora è stato inviato
     if (isset($_POST["data_ora"])) {
@@ -13,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_SESSION['nome'];
     //echo $nome;
 
-    $fd = fopen("../data/apointments.csv", "a+");
+    $fd = fopen($apointments_path, "a+");
     $appuntamento = $cognome . $nome . "," . $data_ora . "\n";
     //echo $data_ora;
     fputs($fd, "$appuntamento");
@@ -24,18 +28,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Ottieni la data da colorare dalla richiesta POST
     $dateToColor = isset($_POST["data_ora"]) ? $_POST["data_ora"] : 0;
+}else{
+    $dateToColor = 0;
+}
 
-    //lettura date inserite in precedenza
-    $file_path = '../data/apointments.csv';
-
-    function confrontaGiorni($days1, $days2){
-        if($days1 == date("d", strtotime($days2))){
-            return true;
-        }else{
-            return false;
-        }
+function confrontaGiorni($days1, $days2){
+    if($days1 == date("d", strtotime($days2))){
+        return true;
+    }else{
+        return false;
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,7 +105,7 @@ for ($row = 1; $row <= 6; $row++) {
             }
             $cellClass = '';
 
-            $handle = fopen($file_path, 'r');
+            $handle = fopen($apointments_path, 'r');
             if ($handle) {
                 // Leggi il file riga per riga
                 while (($dati = fgetcsv($handle)) !== false) {
@@ -119,15 +123,19 @@ for ($row = 1; $row <= 6; $row++) {
                 }
             }
 
-            //lettura data appena inserita
-            if (confrontaGiorni($dayCounter, $dateToColor)) {
-                $cellClass = 'highlightJustDid';
-                //echo ("in");
+            //if per non fare eseguire l'operazione se apriamo il file da index dato che
+            //non necessaria se non abbiamo appena appliacato modifiche
+            if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                //lettura data appena inserita
+                if (confrontaGiorni($dayCounter, $dateToColor)) {
+                    $cellClass = 'highlightJustDid';
+                    //echo ("in");
+                }
             }
 
             // Stampare la cella con la classe CSS appropriata
             //link per andare a vedere il giorno con gli orari degli appuntamenti
-            echo '<td class="' . $cellClass . '">' . "<a href='.\index.php' class='normalA''>" . $dayCounter . '</a> </td>';
+            echo '<td class="' . $cellClass . '">' . "<a href='.\dayLogic.php?data=$currentDate' class='normalA''>" . $dayCounter . '</a> </td>';
             $dayCounter++;
             fclose($handle);
         }
@@ -139,15 +147,9 @@ for ($row = 1; $row <= 6; $row++) {
 // Chiudi la tabella
 echo '</table>';
 
-echo '<a href="../index.php" class="button-link">torna alla home</a>';
+echo '<a href="../index.html" class="button-link">torna alla home</a>';
 echo '</div>';
 
 echo '</body>';
 ?>
-
-
-
-
-
-
 </html>
