@@ -36,7 +36,8 @@ dopo di che si verrà reinderizzati sulla pagina calendar logic, tutti gli appun
 genera il calendario del mese attuale,
 se raggiunto da __index__ colorerà ogni giorno con degli appuntamenti in verde,
 se raggiunto da __dataSaveLogic__ tutte le date con degli appuntamneti verranno colorate in verde a parte
-il giorno del ultimo appuntamento inserito che sarà verde scuro
+il giorno del ultimo appuntamento inserito che sarà verde scuro,
+in questa pagina evngolo anche salvati gli appuntamenti nel file pointments
 
 ## dayLogic
 nel calendario avremmo la possibilità di andare a vedere gli appuntamenti di ogni giorno cliccandoci sopra,

@@ -15,6 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //usate quando si passano i parametr
         $_SESSION['nome'] = $nome;
     }
 
+    //aggiungere controllo per non avere doppi utenti
     $fd=fopen("../data/userData.csv","a+");
     $utente = "";
     if(isset($cognome) && isset($nome) && isset($nazione) && isset($dataNascita) && isset($genere)){

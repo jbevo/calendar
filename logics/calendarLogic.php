@@ -17,6 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $nome = $_SESSION['nome'];
     //echo $nome;
 
+    //aggiungere controllo per non avere appuntamenti doppi
     $fd = fopen($apointments_path, "a+");
     $appuntamento = $cognome ." " . $nome . "," . $data_ora . "\n";
     //echo $data_ora;
