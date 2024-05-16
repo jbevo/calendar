@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //echo $nome;
 
     $fd = fopen($apointments_path, "a+");
-    $appuntamento = $cognome . $nome . "," . $data_ora . "\n";
+    $appuntamento = $cognome ." " . $nome . "," . $data_ora . "\n";
     //echo $data_ora;
     fputs($fd, "$appuntamento");
     fclose($fd);

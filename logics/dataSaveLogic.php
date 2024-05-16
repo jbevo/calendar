@@ -43,7 +43,7 @@ fclose($fd);
 if (isset($cognome) && isset($nome)) {
     echo
     "<form action='calendarLogic.php' class='centerdbody' method='POST'>
-        <p>salve " .$cognome ." " .$nome ."<br>". "richieda data e ora per l'appuntamento</p>
+        <p>salve " .$cognome . " " .$nome ."<br>". "richieda data e ora per l'appuntamento</p>
         <label for='data_ora'>Data e ora:</label>
         <input type='datetime-local' id='data_ora' name='data_ora' required>
         <br>
