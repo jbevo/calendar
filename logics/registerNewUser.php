@@ -11,7 +11,7 @@
 </style>
 <body>
     <form class="centerdbody" action="dataSaveLogic.php" method="POST">
-        <label for="nome ">Nome: </label><input type="text" name="nome" id="nome " placeholder="inserisci il tuo nome" size="20" required><br>
+        <label for="nome">Nome:</label><input type="text" name="nome" id="nome" placeholder="inserisci il tuo nome" size="20" required><br>
 
         <label for="cognome">Cognome: </label><input type="text" name="cognome" id="cognome" placeholder="inserisci il tuo cognome" size="20" required><br>
 
