@@ -1,5 +1,26 @@
 <?php
 
+function isRecordDuplicate($filename, $newRecord) {
+    if (!file_exists($filename)) {
+        return false;
+    }
+
+    if (($file = fopen($filename, 'r')) !== FALSE) {
+        while (($data = fgetcsv($file, 1000)) !== FALSE) {
+            echo "dentro while" ."----------" . "<br>";
+            print_r(implode(',', $data));
+            if (implode(',', $data) == $newRecord) {
+                echo "ritorna vero";
+                fclose($file);
+                return true;
+            }
+        }
+        fclose($file);
+    }
+    echo "ritorna falso";
+    return false;
+}
+
 session_start();
 if ($_SERVER['REQUEST_METHOD'] == 'POST') { //usate quando si passano i parametri con il form
     $nome = $_POST['nome'];
@@ -16,15 +37,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //usate quando si passano i parametr
     }
 
     //aggiungere controllo per non avere doppi utenti
-    $fd=fopen("../data/userData.csv","a+");
-    $utente = "";
     if(isset($cognome) && isset($nome) && isset($nazione) && isset($dataNascita) && isset($genere)){
-        $utente = $cognome ."," .$nome ."," .$nazione ."," .$dataNascita ."," .$genere. "\n";
+        $fd=fopen("../data/userData.csv","a+");
+        $utente = "";
+        $utente = $cognome ."," .$nome ."," .$nazione ."," .$dataNascita ."," .$genere;
+        echo $utente . "<br>";
+
+        $filename = "../data/userData.csv";
+
+        if(isRecordDuplicate($filename, $utente)) {
+            header('Location: dataSaveLogic.php?dropdown=' . $cognome . "-" . $nome);
+        }else{
+            fputs($fd, "$utente" . "\n");
+        }
+
+        fclose($fd);
     }else{
         $utente = "jone, doe, america, 1/1/1111, m";
     }
-    fputs($fd, "$utente");
-    fclose($fd);
 }
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') { //usate quando si passano i parametri con il form
