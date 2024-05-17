@@ -7,17 +7,17 @@ function isRecordDuplicate($filename, $newRecord) {
 
     if (($file = fopen($filename, 'r')) !== FALSE) {
         while (($data = fgetcsv($file, 1000)) !== FALSE) {
-            echo "dentro while" ."----------" . "<br>";
+            //echo "dentro while" ."----------" . "<br>";
             print_r(implode(',', $data));
             if (implode(',', $data) == $newRecord) {
-                echo "ritorna vero";
+                //echo "ritorna vero";
                 fclose($file);
                 return true;
             }
         }
         fclose($file);
     }
-    echo "ritorna falso";
+    //echo "ritorna falso";
     return false;
 }
 
