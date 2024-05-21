@@ -41,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //usate quando si passano i parametr
         $fd=fopen("../data/userData.csv","a+");
         $utente = "";
         $utente = $cognome ."," .$nome ."," .$nazione ."," .$dataNascita ."," .$genere;
-        echo $utente . "<br>";
+        //echo $utente . "<br>";
 
         $filename = "../data/userData.csv";
 
