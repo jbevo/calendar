@@ -21,7 +21,7 @@ function isRecordDuplicateApointment($filename, $target) {
     if ($file) {
         // Leggi il file riga per riga
         while (($line = fgets($file)) !== false) {
-            echo $line . "________" . $line . "<br>";
+            //echo $line . "________" . $line . "<br>";
             // Confronta la riga con il valore target
             if ($line === $target) {
                 fclose($file); // Chiudi il file
