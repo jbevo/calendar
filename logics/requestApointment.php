@@ -14,6 +14,14 @@
         <label for="dropdown">Seleziona utente da registrare:</label>
         <select id="dropdown" name="dropdown">
             <?php
+
+            if ($_SERVER["REQUEST_METHOD"] == "GET" && $_GET["alert"] == "true") {
+                echo '<script type="text/javascript">';
+                echo 'alert("appuntamento esistente, scegliere altro utente o altro giorno");';
+                echo '</script>';
+
+            }
+
             session_start();
             // Percorso del file CSV
             $filename = '../data/userData.csv';

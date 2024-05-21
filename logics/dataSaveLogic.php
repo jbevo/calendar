@@ -8,7 +8,7 @@ function isRecordDuplicate($filename, $newRecord) {
     if (($file = fopen($filename, 'r')) !== FALSE) {
         while (($data = fgetcsv($file, 1000)) !== FALSE) {
             //echo "dentro while" ."----------" . "<br>";
-            print_r(implode(',', $data));
+            //print_r(implode(',', $data));
             if (implode(',', $data) == $newRecord) {
                 //echo "ritorna vero";
                 fclose($file);
@@ -28,13 +28,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') { //usate quando si passano i parametr
     $nazione = $_POST['nazione'];
     $dataNascita = $_POST['dataNascita'];
     $genere = $_POST['genere'];
-
-    if (!empty($cognome)) {
-        $_SESSION['cognome'] = $cognome;
-    }
-    if (!empty($nome)) {
-        $_SESSION['nome'] = $nome;
-    }
 
     //aggiungere controllo per non avere doppi utenti
     if(isset($cognome) && isset($nome) && isset($nazione) && isset($dataNascita) && isset($genere)){
@@ -62,7 +55,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') { //usate quando si passano i parametri
     //dividere nome e congome
     $data_splited = explode("-", $nomeCognome, 1000);
     $nome = $data_splited[0];
+    echo $nome;
     $cognome = $data_splited[1];
+    echo $cognome;
+}
+
+if (!empty($cognome)) {
+    $_SESSION['cognome'] = $cognome;
+}
+if (!empty($nome)) {
+    $_SESSION['nome'] = $nome;
 }
 ?>
 

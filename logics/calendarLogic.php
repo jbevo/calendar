@@ -2,6 +2,31 @@
 
 session_start();
 
+function confrontaGiorni($days1, $days2){
+    if($days1 == date("d", strtotime($days2))){
+        return true;
+    }else{
+        return false;
+    }
+}
+
+
+function isRecordDuplicate($filename, $newRecord) {
+    if (!file_exists($filename)) {
+        return false;
+    }
+    if (($file = fopen($filename, 'r')) !== FALSE) {
+        while (($data = fgetcsv($file, 1000)) !== FALSE) {
+            if (implode(',', $data) == $newRecord) {
+                fclose($file);
+                return true;
+            }
+        }
+        fclose($file);
+    }
+    return false;
+}
+
 //lettura date inserite in precedenza
 $apointments_path = '../data/apointments.csv';
 
@@ -18,11 +43,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     //echo $nome;
 
     //aggiungere controllo per non avere appuntamenti doppi
-    $fd = fopen($apointments_path, "a+");
+
     $appuntamento = $cognome ." " . $nome . "," . $data_ora . "\n";
-    //echo $data_ora;
-    fputs($fd, "$appuntamento");
-    fclose($fd);
+    if(!isRecordDuplicate($apointments_path, $appuntamento)){
+        $fd = fopen($apointments_path, "a+");
+        fputs($fd, "$appuntamento");
+        fclose($fd);
+    }else{
+        header("Location: requestApointment.php?alert=true");
+    }
 
     // Imposta la zona oraria
     date_default_timezone_set('Europe/Rome');
@@ -31,14 +60,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dateToColor = isset($_POST["data_ora"]) ? $_POST["data_ora"] : 0;
 }else{
     $dateToColor = 0;
-}
-
-function confrontaGiorni($days1, $days2){
-    if($days1 == date("d", strtotime($days2))){
-        return true;
-    }else{
-        return false;
-    }
 }
 
 ?>
