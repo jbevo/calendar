@@ -11,11 +11,33 @@
     <?php include '..\generalcss.css'; ?>
 </style>
 <body>
-<form class="centerdbody" action="deleteUserLogic.php" method="POST">
-    <label for="nome">Nome:</label><input type="text" name="nome" id="nome" placeholder="inserisci il tuo nome" size="20" required><br>
+<form class="centerdbody" action="deleteApointmentLogic.php" method="POST">
+    <label for="dropdown">selezione utente da cancellare</label><select id="dropdown" name="dropdown">
+        <?php
+        session_start();
+        $_SESSION["appuntamento"] = "";
 
-    <label for="cognome">Cognome: </label><input type="text" name="cognome" id="cognome" placeholder="inserisci il tuo cognome" size="20" required><br>
-    <input type="submit" value="invia">
+        // Percorso del file CSV
+        $filename = '../data/apointments.csv';
+
+        // Apri il file in modalità lettura
+        if (($file = fopen($filename, 'r')) !== FALSE) {
+            // Leggi ed elabora il file CSV riga per riga
+            while (($data = fgetcsv($file, 1000, ',')) !== FALSE) {
+                // Supponiamo che la prima colonna sia il valore e la seconda colonna sia il testo dell'opzione
+                $value = str_replace(" ", "", implode(",", $data));
+                $text = implode(",", $data);
+                echo "<option value=$value>$text</option>";
+            }
+            // Chiudi il file
+            fclose($file);
+        } else {
+            echo '<option value="">Errore nell\'apertura del file CSV.</option>';
+        }
+        ?>
+    </select>
+
+    <input type="submit" value="Invia">
     <a href="../index.html" class="button-link">torna alla home</a>
 </form>
 
