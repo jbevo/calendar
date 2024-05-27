@@ -155,7 +155,7 @@ for ($row = 1; $row <= 6; $row++) {
             }
             // Stampare la cella con la classe CSS appropriata
             //link per andare a vedere il giorno con gli orari degli appuntamenti
-            echo '<td class="' . $cellClass . '">' . "<a href='.\dayLogic.php?data=$currentDate' class='normalA''>" . $dayCounter . '</a> </td>';
+            echo '<td class="' . $cellClass . '">' . "<a href='..\logics\dayLogic.php?data=$currentDate' class='normalA''>" . $dayCounter . '</a> </td>';
             $dayCounter++;
             fclose($handle);
         }
