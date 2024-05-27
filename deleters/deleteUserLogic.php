@@ -13,7 +13,7 @@
 <body>
     <div class="centerdbody">
         <?php
-        function removeRowFromCSV($filename, $targetValue){
+        function removeUserFromCSV($filename, $targetValue){
             // Leggi il contenuto del file CSV in un array e creo array per facilitare lettura e modifica
             $rows = array();
             if (($handle = fopen($filename, 'r')) !== FALSE) {
@@ -26,14 +26,10 @@
                 return false;
             }
 
-            $nome = htmlspecialchars($_POST['nome']);
-            $cognome = htmlspecialchars($_POST['cognome']);
-
             $updatedRows = array();
             foreach ($rows as $row) {
                 // Supponiamo che il valore target sia nella prima colonna
-                if ($row[0] != $cognome && $row[1] != $nome) {
-                    print_r($row);
+                if ($row[0] != $targetValue[0] && $row[1] != $targetValue[1]) {
                     $updatedRows[] = $row;
                 }
             }
@@ -55,21 +51,23 @@
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Ricevi il valore dal form
 
-            $nome = htmlspecialchars($_POST['nome']);
-            $cognome = htmlspecialchars($_POST['cognome']);
+            $dato  = explode("-", $_POST["dropdown"]);
 
-            $targetValue = [$nome, $cognome];
+            $cognome = htmlspecialchars($dato[0]);
+            $nome = htmlspecialchars($dato[1]);
+
+            $targetValue = [$cognome, $nome];
 
             // Nome del file CSV
             $filename = '../data/userData.csv';
 
             // Rimuovi la riga e mostra il risultato
-            if (removeRowFromCSV($filename, $targetValue)) {
-                echo "l'utente '$cognome' è stata rimosso";
+            if (removeUserFromCSV($filename, $targetValue)) {
+                echo "l'utente '$cognome' è stato rimosso";
             } else {
                 echo "utente $cognome non esiste";
             }
-            //echo $_POST["nome"];
+            //echo $_POST["dropdown"];
             //echo $_POST["cognome"];
         }
         ?>
