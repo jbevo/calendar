@@ -31,8 +31,8 @@
                 // Leggi ed elabora il file CSV riga per riga
                 while (($data = fgetcsv($file, 1000, ',')) !== FALSE) {
                     // Supponiamo che la prima colonna sia il valore e la seconda colonna sia il testo dell'opzione
-                    $text = htmlspecialchars($data[0] . "-" . $data[1]);
-                    $value = htmlspecialchars($data[0] . " " . $data[1]);
+                    $text = htmlspecialchars($data[1] . "-" . $data[0]);
+                    $value = htmlspecialchars($data[1] . " " . $data[0]);
                     echo "<option value=$text>$value</option>";
                 }
                 // Chiudi il file
