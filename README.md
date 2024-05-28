@@ -7,7 +7,12 @@ il documento è diviso in
 
 ## index
 in questa pagina html troviamo solo dei bottoni che ci reindirizzano 
-nelle pagine responsabili per il funzionamento della pagina
+nelle pagine responsabili per il funzionamento della paginala pagina è divisa in
+- logics
+- deleters
+- viewers
+ognuna di queste sezioni ha una zona per lavorare su gli utenti e una per lavorare su gli appuntamenti
+
 
 | bottone                 |      pagina       |
 |:------------------------|:-----------------:|
