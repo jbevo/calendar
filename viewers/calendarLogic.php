@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         fputs($fd, "$appuntamento");
         fclose($fd);
     }else{
-        header("Location: requestApointment.php?alert=true");
+        header("Location: ../logics/requestApointment.php?alert=true");
     }
 
     // Imposta la zona oraria
