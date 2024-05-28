@@ -68,7 +68,7 @@
     ?>
     <br>
     <a href="../index.html" class="button-link">torna alla home</a>
-    <a href="../viewers/calendarLogic.php" class="button-link">visualizza utenti</a>
+    <a href="../viewers/calendarLogic.php" class="button-link">visualizza appuntamenti</a>
 </div>
 
 </body>
