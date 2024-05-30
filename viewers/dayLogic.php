@@ -46,7 +46,7 @@
     }
     ?>
     <a href="../index.html" class="button-link">torna alla home</a>
-    <a href="../viewers/calendarLogic.php" class="button-link">vai al calendario</a>
+    <a href="calendarLogic.php" class="button-link">vai al calendario</a>
 </div>
 </body>
 </html>

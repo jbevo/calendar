@@ -12,7 +12,7 @@
 </style>
 <body>
 <form class="centerdbody" action="deleteApointmentLogic.php" method="POST">
-    <label for="dropdown">selezione utente da cancellare</label><select id="dropdown" name="dropdown">
+    <label for="dropdown">selezione appuntamento da annullare</label><select id="dropdown" name="dropdown">
         <?php
         session_start();
         $_SESSION["appuntamento"] = "";
