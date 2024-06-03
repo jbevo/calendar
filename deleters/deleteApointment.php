@@ -26,7 +26,7 @@
             while (($data = fgetcsv($file, 1000, ',')) !== FALSE) {
                 // Supponiamo che la prima colonna sia il valore e la seconda colonna sia il testo dell'opzione
                 $value = str_replace(" ", "", implode(",", $data));
-                $text = $data[0] . "-->" . str_replace("T", " ", $data[1]);
+                $text = $data[0] . "→" . str_replace("T", " ", $data[1]);
                 echo "<option value=$value>$text</option>";
             }
             // Chiudi il file
